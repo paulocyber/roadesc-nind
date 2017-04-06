@@ -1,24 +1,25 @@
-'use strict';
 
-const passport = require('passport');  
 const Strategy = require('passport-local');
 
-passport.use(new Strategy(  
-  function(username, password, done) {
-    // database dummy - find user and verify password
-    if(username === 'devils name' && password === '666'){
-      done(null, {
-        id: 666,
-        firstname: 'devils',
-        lastname: 'name',
-        email: 'devil@he.ll',
-        verified: true
-      });
-    }
-    else {
-      done(null, false);
-    }
-  }
-));
 
-module.exports = passport;  
+module.exports = function(passport) {
+    passport.use(new Strategy(
+        function(username, password, done) {
+            // database dummy - find user and verify password
+
+
+            if (username === 'devilsname' && password === '666') {
+              // to req.user
+                return done(null, {
+                    id: 666,
+                    firstname: 'devils',
+                    lastname: 'name',
+                    email: 'devil@he.ll',
+                    verified: true
+                });
+            } else {
+                return done(null, false);
+            }
+        }
+    ));
+}

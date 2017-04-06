@@ -3,15 +3,19 @@ module.exports = function(app){
 	var User = app.models.user;
 
 	var controller = {};
+	var success = { 
+					texto: "A persistência é o caminho do êxito.",
+					autor: "Charles Chaplin"
+				}
 
-	controller.listaUser = function(req, res){
-		User.find(function(error,users){
+	controller.listaDados = function(req, res){
+		/*User.find(function(error,users){
 			if(error){
 				console.error(error);
 				res.status(500).json(error);
-			}
-			res.json(users);
-		})
+			}*/
+			res.json(success);
+	//	})
 	};
 
 	controller.obtemUser= function(req,res){
