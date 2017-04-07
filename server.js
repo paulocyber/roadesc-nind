@@ -8,13 +8,13 @@ const passportStrategies = require('./config/autenticacao')
     //var mongo = require('./config/database.js')(mongoUriMlab);
 
 function serialize(req, res, next) {
-
     next();
 }
 
 function generateToken(req, res, next) {
     req.token = jwt.sign({
-        id: req.user.id,
+        iss: req.user.id,
+        name: req.username
     }, 'server secret', {
         expiresInMinutes: 120
     });

@@ -2,6 +2,7 @@ var jwt = require('jwt-simple');
 var segredo = 'server secret';
 
 module.exports = function(req, res, next) {
+    console.log(req.body)
     var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
     //1
     if (token) {
@@ -9,18 +10,10 @@ module.exports = function(req, res, next) {
             var decoded = jwt.decode(token, segredo);
             console.log('decodando ' + decoded);
             //2
-            if (decoded.exp <= Date.now()) {
-                res.json(400, { error: 'Acesso Expirado, faça login novamente' });
+            if(decoded.iss === 666 && decoded.name === 'devilsname'){
+                console.log('achei usuario ' + req.user)
+                return next();
             }
-            //3
-            // model.findOne({ _id: decoded.iss }, function(err, user) {
-            //     if (err)
-            //         res.status(500).json({ message: "erro ao procurar usuario do token." })
-            //     req.user = user;
-            //     console.log('achei usuario ' + req.user)
-            //     return next();
-            // });
-            //4
             next();
         } catch (err) {
             return res.status(401).json({ message: 'Erro: Seu token é inválido' });

@@ -14,6 +14,7 @@ module.exports = function(app){
 				console.error(error);
 				res.status(500).json(error);
 			}*/
+			console.log("chegou aqui");
 			res.json(success);
 	//	})
 	};

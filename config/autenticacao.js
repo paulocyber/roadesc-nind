@@ -1,4 +1,3 @@
-
 const Strategy = require('passport-local');
 
 
@@ -6,10 +5,8 @@ module.exports = function(passport) {
     passport.use(new Strategy(
         function(username, password, done) {
             // database dummy - find user and verify password
-
-
             if (username === 'devilsname' && password === '666') {
-              // to req.user
+                // to req.user
                 return done(null, {
                     id: 666,
                     firstname: 'devils',

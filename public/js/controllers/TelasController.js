@@ -1,11 +1,21 @@
-angular.module('nind-form').controller('TelasController',
-	function($scope){
+angular.module('roadsec')
+    .controller('TelasController', ['$rootScope', '$scope', '$http', '$localStorage', '$location','usuariosService', function($rootScope, $scope, $http, $localStorage, $location, usuariosService) {
 
-	$scope.template = [{
-        name: 'login.html',
-        url: 'login.html'}]
+        $scope.signin = function() {
 
-    $scope.myFunction = function() {
-        $scope.color = 'red';
-    }
-});
+            var authurl = 'http://localhost:5000/auth';
+            var username = $scope.username;
+            var password = $scope.password;
+
+
+            var data = "username=" + username + "&password=" + password;
+
+            $http.post(authurl, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                .success(function(result) {
+                    usuariosService.validaLogin(result);
+                    $location.path('/dados');
+                });
+        }
+
+
+    }]);
