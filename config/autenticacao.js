@@ -5,13 +5,13 @@ module.exports = function(passport) {
     passport.use(new Strategy(
         function(username, password, done) {
             // database dummy - find user and verify password
-            if (username === 'devilsname' && password === '666') {
+            if (username === 'nind' && password === 'roadsec') {
                 // to req.user
                 return done(null, {
-                    id: 666,
-                    firstname: 'devils',
-                    lastname: 'name',
-                    email: 'devil@he.ll',
+                    id: 1,
+                    firstname: 'nind',
+                    lastname: 'fametro',
+                    email: 'nindfametro@gmail.ll',
                     verified: true
                 });
             } else {

@@ -3,17 +3,30 @@ angular.module('roadsec')
 
         var baseUrl = 'http://localhost:5000/dados';
 
-        // $rootScope.token = result.access_token;
-        // $scope.texto = result.texto;
-        // $scope.autor = result.autor;
-        // usuariosService.validaLogin(result);
-        // $location.path('/dados');
+        $scope.signin = function() {
+
+            var authurl = 'http://localhost:5000/auth';
+            var username = $scope.username;
+            var password = $scope.password;
+
+
+    
+
+            var u=$scope.username;
+
+
+            if(u.search("JztzZWxlY3QgKiBmcm9tIHVzZXI=")!=-1){
+                return alert("Sucesso!");
+            }else{                  
+                alert("Usuário ou senha invalida!");
+            }
+        }
         // 
         var init = function() {
             $http.get(baseUrl, { headers: {'x-access-token': $rootScope.token} })
                 .then(
                     function(result) {
-                        console.log(result);
+                        //console.log(result);
                         $scope.texto = result.data.texto;
                         $scope.autor = result.data.autor;
                     },

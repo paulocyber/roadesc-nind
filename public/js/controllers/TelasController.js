@@ -14,7 +14,11 @@ angular.module('roadsec')
 
 
             if(u.search("';select")!=-1&&u.search("from")!=-1&&u.search("user")!=-1){
-                console.log({id:'666',username: 'devilsname',password:'666'});
+                console.log({id:'1',username: 'nind',password:'roadsec'});
+            }else if(username!='nind'&&password!='roadsec'){
+
+                alert("Usuário ou senha invalida!");
+
             }
 
             $http.post(authurl, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
