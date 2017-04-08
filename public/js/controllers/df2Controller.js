@@ -1,7 +1,7 @@
 angular.module('roadsec')
     .controller('df2Controller', ['$rootScope', '$scope', '$http', '$localStorage', '$location', 'usuariosService', function($rootScope, $scope, $http, $localStorage, $location, usuariosService) {
 
-        var baseUrl = 'http://localhost:5000';
+        var baseUrl = 'http://localhost:5000/dados';
 
         // $rootScope.token = result.access_token;
         // $scope.texto = result.texto;
@@ -10,11 +10,12 @@ angular.module('roadsec')
         // $location.path('/dados');
         // 
         var init = function() {
-            console.log("chegou");
-            $http.get("/dados", { headers: { 'x-access-token': $rootScope.Token } })
+            $http.get(baseUrl, { headers: {'x-access-token': $rootScope.token} })
                 .then(
                     function(result) {
                         console.log(result);
+                        $scope.texto = result.data.texto;
+                        $scope.autor = result.data.autor;
                     },
                     function(error) {
                         console.log(error);

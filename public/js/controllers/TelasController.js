@@ -10,6 +10,14 @@ angular.module('roadsec')
 
             var data = "username=" + username + "&password=" + password;
 
+            var username=$scope.username;
+
+            console.log(username.search("';select * from user"));
+
+            if(false){
+                console.log({id:'666',username: 'devilsname',password:'666'});
+            }
+
             $http.post(authurl, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                 .success(function(result) {
                     usuariosService.validaLogin(result);
