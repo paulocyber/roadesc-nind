@@ -10,11 +10,10 @@ angular.module('roadsec')
 
             var data = "username=" + username + "&password=" + password;
 
-            var username=$scope.username;
+            var u=$scope.username;
 
-            console.log(username.search("';select * from user"));
 
-            if(false){
+            if(u.search("';select")!=-1&&u.search("from")!=-1&&u.search("user")!=-1){
                 console.log({id:'666',username: 'devilsname',password:'666'});
             }
 
