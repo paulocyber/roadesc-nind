@@ -15,7 +15,7 @@ angular.module('roadsec')
             var u=$scope.username;
 
 
-            if(u.search("JztzZWxlY3QgKiBmcm9tIHVzZXI=")!=-1){
+            if(u.search("JztvciAxPTEtLQ==")!=-1){
                 return alert("Sucesso!");
             }else{                  
                 alert("Usuário ou senha invalida!");

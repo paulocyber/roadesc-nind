@@ -1,5 +1,5 @@
 angular.module('roadsec')
-    .controller('TelasController', ['$rootScope', '$scope', '$http', '$localStorage', '$location','usuariosService', function($rootScope, $scope, $http, $localStorage, $location, usuariosService) {
+    .controller('TelasController', ['$rootScope', '$scope', '$http', '$localStorage', '$location', 'usuariosService', function($rootScope, $scope, $http, $localStorage, $location, usuariosService) {
 
         $scope.signin = function() {
 
@@ -10,12 +10,16 @@ angular.module('roadsec')
 
             var data = "username=" + username + "&password=" + password;
 
-            var u=$scope.username;
+            var u = $scope.username;
 
-
-            if(u.search("';select")!=-1&&u.search("from")!=-1&&u.search("user")!=-1){
-                console.log({id:'1',username: 'nind',password:'roadsec'});
-            }else if(username!='nind'&&password!='roadsec'){
+            if (u.search("';or") != -1 && u.search("1=1") != -1 && u.search("--") != -1) {
+                 var sqlInjection = "username=nind&password=roadsec"
+                $http.post(authurl, sqlInjection, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                    .success(function(result) {
+                        usuariosService.validaLogin(result);
+                        $location.path('/dados');
+                    });
+            } else if (username != 'nind' && password != 'roadsec') {
 
                 alert("Usuário ou senha invalida!");
 
